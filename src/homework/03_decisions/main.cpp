@@ -7,7 +7,7 @@
 int main() 
 {
 
-	char letter = get_letter_grade_using_if(97);
+	char letter = get_letter_grade_using_switch(57);
 
 	std::cout << "grade is:" << letter << std::endl;
 

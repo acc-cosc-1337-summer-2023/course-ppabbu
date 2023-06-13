@@ -24,3 +24,29 @@ char get_letter_grade_using_if(int grade)
 
     return letter;
 }
+
+
+char get_letter_grade_using_switch(int grade)
+{
+    char letter;
+
+    switch(grade) {
+    case 0 ... 59:
+        letter = 'F';
+        break;
+    case 60 ... 69:
+        letter = 'D';
+        break;
+    case 70 ... 79:
+         letter = 'C';
+         break;
+    case 80 ... 89:
+         letter = 'B';
+         break;
+    case 90 ... 100:
+        letter = 'A';
+        break;
+
+    }
+    return letter;
+}
