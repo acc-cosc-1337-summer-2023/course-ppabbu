@@ -1,5 +1,6 @@
 #include "tic_tac_toe_3.h"
-
+#include <iostream>
+using namespace std;
 /*
 class function check_column_win
 Win by column if and return true if
@@ -9,6 +10,7 @@ Win by column if and return true if
 else
 false
 */
+
 
 
 
