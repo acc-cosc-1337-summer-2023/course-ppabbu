@@ -3,7 +3,7 @@
 
 using std::cout;
 
-bool TicTacToe::game_over()
+bool TicTacToe::game_over() 
 {
     return check_board_full();
 }
