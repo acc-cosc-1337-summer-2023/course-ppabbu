@@ -8,7 +8,7 @@ TEST_CASE("Verify Test Configuration", "verification") {
 TEST_CASE("testing get_vector_max_value","get_vector_max_value"){
 	vector<int>v1{5,7,-1,99,-100,10};
 	REQUIRE(get_vector_max_value(v1) == 99);
-
+  
 	vector<int>v2{-50,0,-51,50,-99,-100};
 	REQUIRE(get_vector_max_value(v2)==50);
 }
