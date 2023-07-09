@@ -8,7 +8,7 @@ TEST_CASE("Verify Test Configuration", "verification") {
 
 TEST_CASE("Test if the board is full")
 {
-	TicTacToe game;
+	TicTacToe game;   
 
 	game.mark_board(1);
 	REQUIRE(game.game_over()==false);
