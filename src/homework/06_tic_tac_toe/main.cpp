@@ -1,50 +1,62 @@
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+using std::cin; using std::cout; using std::string;
+using std::unique_ptr; using std::make_unique;
 
 int main() 
 {
-    TicTacToe game;
+    TicTacToeManager manager; 
     string first_player;
-    char user_choice = 'y';
+    char choice;
+    unique_ptr<TicTacToe> game;
 
     do
     {
-        cout<<"Enter first player: ";
-        cin>>first_player;
+        auto game_type=0;
 
-        if((first_player != "X") && (first_player != "O"))
+        cout<<"Enter game type(3 or 4):";
+        cin>>game_type;
+
+        if(game_type == 3)
         {
-            do
-            {
-                cout<<"Please enter first player X or O: ";
-                cin>>first_player;
-            }while((first_player != "X") && (first_player != "O"));
-        }
-
-        game.start_game(first_player);
-
-        int position;
-
-        while(!game.game_over())
-        {
-            cout<<"Enter a position: ";
-            cin>>position;
-            game.mark_board(position);
-            game.display_board();
-        }
-
-        if (game.get_winner() == "C")
-        {
-            cout<<"It's a tie!"<<"\n";
+            game = make_unique<TicTacToe3>();
         }
         else
         {
-            cout<<"The Winner is: "<<game.get_winner()<<"\n";
+            game=make_unique<TicTacToe4>();
         }
 
-        cout<<"Play again? enter y or Y?";
-        cin>>user_choice;
+        while((!first_player != "X") || (first_player != "O"))
+        {
+            cout<<"Enter first player: ";
+            cin>>first_player;
+        }
+        
+        game->start_game(first_player);
 
-    }while(user_choice == 'y' || user_choice == 'Y');
+        while(game->game_over()==false)
+        {
+            cin>>*game;
+            cout<<*game;
+        }
+
+        manager.save_game(*game);
+
+        int o, x, t;
+        manager.get_winner_total(o,x,t);
+        cout<<"O wins:"<<o;
+        cout<<"X wins:"<<x;
+        cout<<"Ties: "<<t<<"\n";
+
+        first_player = "Z";
+        cout<<"Do you want to quit? enter N";
+        cin>>choice;
+    }
+    while(choice == 'N');
+
+    cout<<manager;  
 
     return 0;
 }
